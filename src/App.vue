@@ -31,7 +31,7 @@
           contain
           src="@/assets/images/ELEMENTO.png"
           transition="scale-transition"
-          width="120"
+          width="80"
           @click="$vuetify.goTo('#bloqueCasinoApuesta', 50, 2000)"
           style="cursor: pointer"
         />
@@ -83,7 +83,7 @@
             data-aos-once="true"
             @click="$vuetify.goTo('#resultados', 0, 2000)"
           >RESULTADOS</v-btn>
-          <v-dialog v-model="regisrarse" width="500">
+          <v-dialog v-model="regisrarse" width="700">
             <template v-slot:activator="{on,attrs}">
               <v-btn
                 v-on="on"
@@ -104,15 +104,37 @@
               <v-card-text class="pb-0">
                 <v-container fluid class="px-4 pb-0">
                   <v-form>
+                    <v-row >
+                    <v-col cols="12" class="pb-0">
                     <v-text-field class="mayeka" rounded solo placeholder="USUARIO"></v-text-field>
-                    <v-text-field class="mayeka" rounded solo placeholder="EMAIL"></v-text-field>
+                    </v-col>
+                    <v-col cols="6" class="pb-0">
+                    <v-text-field class="mayeka" rounded solo placeholder="NOMBRE"></v-text-field>
+
+                    </v-col>
+                    <v-col cols="6" class="pb-0">
+
+                    <v-text-field class="mayeka" rounded solo placeholder="CÉDULA"></v-text-field>
+                    </v-col>
+                    <v-col cols="12" class="pb-0">
+                    <v-text-field class="mayeka" rounded solo placeholder="CORREO"></v-text-field>
+                    <v-text-field class="mayeka" rounded solo placeholder="REPETIR CORREO"></v-text-field>
+
+                    </v-col>
+                    <v-col cols="6" class="pb-0">
                     <v-text-field class="mayeka" rounded solo placeholder="CONTRASEÑA"></v-text-field>
+
+                    </v-col>
+                    <v-col cols="6" class="pb-0">
                     <v-text-field class="mayeka" rounded solo placeholder="REPETIR CONTRASEÑA"></v-text-field>
+
+                    </v-col>
+                    </v-row>
                   </v-form>
                 </v-container>
               </v-card-text>
               <v-card-actions class="d-flex justify-center pt-0 pb-8">
-                <v-btn rounded outlined color="white" class="mayeka">CREAR USUARIO</v-btn>
+                <v-btn rounded outlined color="white" large class="mayeka">CREAR USUARIO</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>

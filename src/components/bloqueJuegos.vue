@@ -14,7 +14,7 @@
         data-aos-duration="2000"
         data-aos-anchor-placement="center-bottom"
         data-aos-once="false">
-            <v-img class="imgJuegos" src="@/assets/images/lotto_activo.jpg" max-height="300"></v-img>
+            <v-img class="imgJuegos" src="@/assets/images/la-granjita.jpg" max-height="300"></v-img>
             <div class="post-s mayeka">
               <h2>Animalitos</h2>
             </div>
