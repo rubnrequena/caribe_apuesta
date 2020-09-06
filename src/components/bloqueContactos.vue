@@ -10,7 +10,7 @@
                 <h3 style="letter-spacing:8px;" class="mayeka">CONTACTOS</h3>
               </v-card-title>
               <v-card-text class="pt-10">
-                <p class="text-center">
+                <p class="text-center mayeka">
                   <a
                     href
                     class="my-12"

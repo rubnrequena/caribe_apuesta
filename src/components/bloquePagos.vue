@@ -3,7 +3,7 @@
     <v-card color="white" light tile elevation="0" class="py-6">
       <v-card-title class="justify-center mayeka letters3">
         <ul>
-          <li><a data-text="MÉTODOS DE PAGO Y COBRO" class="mayeka" style="letter-spacing:10px; color:#ffff;">MÉTODOS DE PAGO Y COBRO</a></li>
+          <li><a data-text="MÉTODOS DE PAGO Y COBRO" class="mayeka" style="letter-spacing:10px; color:#ffff; font-size:20pt">MÉTODOS DE PAGO Y COBRO</a></li>
         </ul>
       </v-card-title>
     </v-card>

@@ -3,7 +3,7 @@
     <v-card color="black" tile elevation="0" class="py-6">
       <v-card-title class="white--text justify-center mayeka letters">
         <ul>
-          <li><a data-text="¿CÓMO JUGAR?" class="mayeka" style="letter-spacing:10px;">¿CÓMO JUGAR?</a></li>
+          <li><a data-text="¿CÓMO JUGAR?" class="mayeka" style="letter-spacing:10px; font-size:20pt">¿CÓMO JUGAR?</a></li>
         </ul>
       </v-card-title>
     </v-card>

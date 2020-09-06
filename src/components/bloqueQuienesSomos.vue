@@ -6,7 +6,7 @@
           <v-col class="d-flex child-flex" cols="12" sm="6">
             <v-card class="text-center mayeka" elevation="0">
               <div  class="center">
-                <h1 style="letter-spacing:10px; color:#000033;"  class="whoTitle"
+                <h1 style="letter-spacing:10px; color:#000033; "  class="whoTitle"
                     data-aos="fade-down-right"
                     data-aos-duration="2000"
                     data-aos-once="false"

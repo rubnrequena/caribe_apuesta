@@ -2,6 +2,7 @@
   <div id="bloqueCasinoApuesta">
     <v-img src="@/assets/images/fondito_final.jpg" style="position:sticky;">
       <img
+        class="mt-12"
         data-aos="flip-left"
         data-aos-duration="2000"
         data-aos-once="true"

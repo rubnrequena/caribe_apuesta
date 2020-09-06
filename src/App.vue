@@ -1,8 +1,19 @@
 <template>
   <v-app>
-    <v-app-bar app color="#000033" dark prominent>
+    <v-navigation-drawer v-model="side_menu" absolute temporary>
+      <v-list dense>
+        <v-list-item v-for="item in items" :key="item.title" link>
+          <v-list-item-icon>
+            <v-icon color="#000033">{{ item.icon }}</v-icon>
+          </v-list-item-icon>
 
-      
+          <v-list-item-content>
+            <v-list-item-title color="#000033" class="mayeka">{{ item.title }}</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+    <v-app-bar app color="#000033" dark prominent>
       <div
         class="d-flex align-center"
         data-aos="fade-right"
@@ -10,7 +21,9 @@
         data-aos-once="true"
         data-aos-easing="ease-in-out-sine"
       >
-      <v-app-bar-nav-icon></v-app-bar-nav-icon>
+        <v-btn fab icon dark @click.stop="side_menu = !side_menu" class="d-md-none d-xl-flex">
+          <v-icon>mdi-menu</v-icon>
+        </v-btn>
         <v-img
           alt="Caribe apuesta logo"
           id="logoLogo"
@@ -91,15 +104,15 @@
               <v-card-text class="pb-0">
                 <v-container fluid class="px-4 pb-0">
                   <v-form>
-                    <v-text-field rounded solo placeholder="USUARIO"></v-text-field>
-                    <v-text-field rounded solo placeholder="EMAIL"></v-text-field>
-                    <v-text-field rounded solo placeholder="CONTRASEÑA"></v-text-field>
-                    <v-text-field rounded solo placeholder="REPETIR CONTRASEÑA"></v-text-field>
+                    <v-text-field class="mayeka" rounded solo placeholder="USUARIO"></v-text-field>
+                    <v-text-field class="mayeka" rounded solo placeholder="EMAIL"></v-text-field>
+                    <v-text-field class="mayeka" rounded solo placeholder="CONTRASEÑA"></v-text-field>
+                    <v-text-field class="mayeka" rounded solo placeholder="REPETIR CONTRASEÑA"></v-text-field>
                   </v-form>
                 </v-container>
               </v-card-text>
               <v-card-actions class="d-flex justify-center pt-0 pb-8">
-                <v-btn rounded outlined color="white">CREAR USUARIO</v-btn>
+                <v-btn rounded outlined color="white" class="mayeka">CREAR USUARIO</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -124,13 +137,13 @@
               <v-card-text class="pb-0">
                 <v-container fluid class="px-4 pb-0">
                   <v-form>
-                    <v-text-field rounded solo placeholder="USUARIO O EMAIL"></v-text-field>
-                    <v-text-field rounded solo placeholder="CONTRASEÑA"></v-text-field>
+                    <v-text-field class="mayeka" rounded solo placeholder="USUARIO O EMAIL"></v-text-field>
+                    <v-text-field class="mayeka" rounded solo placeholder="CONTRASEÑA"></v-text-field>
                   </v-form>
                 </v-container>
               </v-card-text>
               <v-card-actions class="d-flex justify-center pt-0 pb-8">
-                <v-btn rounded outlined color="white">INICIAR SESIÓN</v-btn>
+                <v-btn rounded outlined color="white" class="mayeka">INICIAR SESIÓN</v-btn>
               </v-card-actions>
             </v-card>
           </v-dialog>
@@ -148,9 +161,8 @@
       <bloque7></bloque7>
     </v-main>
 
-<v-footer padless  app style="background-color: rgba(0,0,0,0);">
+    <v-footer padless app style="background-color: rgba(0,0,0,0);">
       <v-row class="text-right">
-
         <v-col>
           <v-dialog v-model="chat" hide-overlay>
             <template v-slot:activator="{on,attrs}">
@@ -161,8 +173,14 @@
             <v-container fluid id="#box">
               <v-row>
                 <v-col cols="12">
-                  <v-card class="float-right" width="300" min-height="300">
-                    <v-card-title>CHAT EN VIVO <v-spacer></v-spacer> <v-btn icon @click="chat=false" ><v-icon>mdi-close</v-icon></v-btn></v-card-title>
+                  <v-card class="float-right mayeka" width="300" min-height="300">
+                    <v-card-title>
+                      CHAT EN VIVO
+                      <v-spacer></v-spacer>
+                      <v-btn icon @click="chat=false">
+                        <v-icon>mdi-close</v-icon>
+                      </v-btn>
+                    </v-card-title>
                     <v-divider></v-divider>
                     <v-card-text>
                       Lorem ipsum dolor sit amet,
@@ -172,12 +190,14 @@
                       Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus, tempora molestiae. Ex magnam fugit
                       eaque vitae obcaecati modi ipsum natus commodi? Magni aliquid inventore,
                       mollitia neque porro vel eveniet soluta?
-                      
                     </v-card-text>
                     <v-divider></v-divider>
                     <v-card-actions>
-                      <v-text-field rounded></v-text-field>
-                      <v-btn icon fab>
+                      <v-form>
+                        <v-text-field outlined class="mayeka mt-6" placeholder="ESCRIBE AQUÍ"></v-text-field> 
+                      </v-form>
+                      
+                      <v-btn icon fab right absolute>
                         <v-icon>mdi-send</v-icon>
                       </v-btn>
                     </v-card-actions>
@@ -186,11 +206,11 @@
               </v-row>
             </v-container>
           </v-dialog>
-          </v-col>
+        </v-col>
         <v-col class="pb-0 pt-2">
-            <v-btn dark icon fab  light >
-              <v-icon size="35">mdi-whatsapp</v-icon>
-            </v-btn>
+          <v-btn dark icon fab light>
+            <v-icon size="35">mdi-whatsapp</v-icon>
+          </v-btn>
         </v-col>
         <v-col cols="12" style="background-color: #000033">
           <h4
@@ -231,6 +251,15 @@ export default {
     return {
       registrarse: false,
       chat: false,
+      side_menu: false,
+      items: [
+        { title: "INICIAR SESIÓN", icon: "mdi-login-variant" },
+        { title: "REGISTRARSE", icon: "mdi-account-plus-outline" },
+        { title: "JUEGOS", icon: "mdi-poker-chip" },
+        { title: "¿CÓMO JUGAR?", icon: "mdi-help-circle-outline" },
+        { title: "PAGOS", icon: "mdi-credit-card-multiple-outline" },
+        { title: "RESULTADOS", icon: "mdi-cards-playing-outline" },
+      ],
     };
   },
 };

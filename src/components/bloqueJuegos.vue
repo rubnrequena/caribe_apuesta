@@ -4,7 +4,7 @@
       <v-card color="#000033" elevation="0">
         <v-card-title class="white--text justify-center letters">
           <ul>
-            <li><a data-text="JUEGOS" class="mayeka" style="letter-spacing:10px;">JUEGOS</a></li>
+            <li><a data-text="JUEGOS" class="mayeka" style="letter-spacing:10px; font-size:20pt">JUEGOS</a></li>
           </ul>
         </v-card-title>
 
