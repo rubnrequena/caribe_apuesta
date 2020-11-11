@@ -1,0 +1,142 @@
+openapi: 3.0.0
+info:
+  title: caribe api
+  version: '1.0'
+  contact:
+    email: rubenrequena@gmail.com
+    name: Ruben Requena
+  description: API para las taquillas de escritorio del sistema CaribeApuesta
+servers:
+  - url: 'http://51.83.141.121:3000'
+paths:
+  /auth:
+    post:
+      tags:
+        - dario
+      summary: Autenticacion
+      operationId: post-auth
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: string
+                  activo:
+                    type: boolean
+                  jerarquia:
+                    type: array
+                    items:
+                      type: string
+                  moneda:
+                    type: object
+                    properties:
+                      _id:
+                        type: string
+                      nombre:
+                        type: string
+                      siglas:
+                        type: string
+                  nombre:
+                    type: string
+                  usuario:
+                    type: string
+                  rol:
+                    type: string
+                  correo:
+                    type: string
+                  telefono:
+                    type: string
+                  permisos:
+                    type: array
+                    items:
+                      type: integer
+                  codigo:
+                    type: string
+                  token:
+                    type: string
+                  grupoPago:
+                    type: string
+              examples:
+                Ejemplo:
+                  value:
+                    _id: 5fac30a3d417f82b2ccbba87
+                    activo: true
+                    jerarquia:
+                      - 5fac0cb3f4131413ec042696
+                      - 5fac30a3d417f82b2ccbba76
+                    moneda:
+                      _id: 5f3f9f72e8430007447ced9b
+                      nombre: Bolivar
+                      siglas: ves
+                      principal: true
+                      __v: 0
+                    nombre: ONLINE 1
+                    usuario: online1
+                    clave: 81dc9bdb52d04dc20036dbd8313ed055
+                    rol: online
+                    correo: online1@gmail.com
+                    telefono: '04149970167'
+                    permisos:
+                      - 1
+                      - 10
+                      - 11
+                      - 20
+                      - 21
+                      - 22
+                      - 23
+                      - 30
+                      - 31
+                      - 40
+                      - 41
+                      - 50
+                      - 51
+                      - 52
+                      - 60
+                      - 61
+                      - 70
+                      - 71
+                      - 72
+                    codigo: 0-63-29
+                    grupoPago: 5fac30a3d417f82b2ccbba80
+                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFjMzBhM2Q0MTdmODJiMmNjYmJhODciLCJub21icmUiOiJPTkxJTkUgMSIsInJvbCI6Im9ubGluZSIsImplcmFycXVpYSI6WyI1ZmFjMGNiM2Y0MTMxNDEzZWMwNDI2OTYiLCI1ZmFjMzBhM2Q0MTdmODJiMmNjYmJhNzYiXSwibW9uZWRhIjpbeyJfaWQiOiI1ZjNmOWY3MmU4NDMwMDA3NDQ3Y2VkOWIiLCJub21icmUiOiJCb2xpdmFyIiwic2lnbGFzIjoidmVzIiwicHJpbmNpcGFsIjp0cnVlLCJfX3YiOjB9XSwicGVybWlzb3MiOiI1ZmFjMGNiM2Y0MTMxNDEzZWMwNDI2OTciLCJpYXQiOjE2MDUxMjAyMTksImV4cCI6MTYwNTIwNjYxOX0.Q0SWiLnNQJUnXcttu5VAIIoK0kBJiDzUk4ecNE0SJZw
+        '201':
+          description: Created
+        '400':
+          description: Bad Request
+      description: punto de acceso para iniciar sesion
+      parameters: []
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                usuario:
+                  type: string
+                clave:
+                  type: string
+            examples:
+              ejemplo:
+                value:
+                  usuario: pos1
+                  clave: '1234'
+        description: Solicitar inicio de sesion
+components:
+  schemas:
+    Usuario:
+      title: Usuario
+      type: object
+      properties:
+        id:
+          type: string
+    Sorteo:
+      title: Sorteo
+      type: object
+      properties:
+        id:
+          type: string
+  securitySchemes: {}
