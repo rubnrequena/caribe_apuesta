@@ -101,10 +101,6 @@ paths:
                     codigo: 0-63-29
                     grupoPago: 5fac30a3d417f82b2ccbba80
                     token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFjMzBhM2Q0MTdmODJiMmNjYmJhODciLCJub21icmUiOiJPTkxJTkUgMSIsInJvbCI6Im9ubGluZSIsImplcmFycXVpYSI6WyI1ZmFjMGNiM2Y0MTMxNDEzZWMwNDI2OTYiLCI1ZmFjMzBhM2Q0MTdmODJiMmNjYmJhNzYiXSwibW9uZWRhIjpbeyJfaWQiOiI1ZjNmOWY3MmU4NDMwMDA3NDQ3Y2VkOWIiLCJub21icmUiOiJCb2xpdmFyIiwic2lnbGFzIjoidmVzIiwicHJpbmNpcGFsIjp0cnVlLCJfX3YiOjB9XSwicGVybWlzb3MiOiI1ZmFjMGNiM2Y0MTMxNDEzZWMwNDI2OTciLCJpYXQiOjE2MDUxMjAyMTksImV4cCI6MTYwNTIwNjYxOX0.Q0SWiLnNQJUnXcttu5VAIIoK0kBJiDzUk4ecNE0SJZw
-        '201':
-          description: Created
-        '400':
-          description: Bad Request
       description: punto de acceso para iniciar sesion
       parameters: []
       requestBody:
@@ -124,10 +120,10 @@ paths:
                   clave: '1234'
         description: Solicitar inicio de sesion
       tags:
-        - Autenticacion
+        - Sesion
   /sorteo/disponibles:
     get:
-      summary: Your GET endpoint
+      summary: sorteos disponibles
       tags:
         - sorteos
       responses:
@@ -186,7 +182,7 @@ paths:
                     sorteos:
                       - _id: string
                         descripcion: string
-                        cierra: '2020-11-11 00:00:00'
+                        cierra: '2020-11-11T00:00:00Z'
                         operadora: string
                     operadora:
                       - _id: string
@@ -208,7 +204,7 @@ paths:
     parameters: []
   /sorteo/conganador:
     get:
-      summary: Your GET endpoint
+      summary: sorteos premiados
       tags:
         - sorteos
       responses:
@@ -248,7 +244,7 @@ paths:
           required: true
   /sorteo/buscar/fecha:
     get:
-      summary: Your GET endpoint
+      summary: buscar sorteos
       tags:
         - sorteos
       responses:
@@ -282,7 +278,7 @@ paths:
           required: true
   /ticket/venta:
     post:
-      summary: ''
+      summary: vender
       operationId: post-ticket-venta
       responses:
         '200':
@@ -350,7 +346,7 @@ paths:
         - ticket
   /ticket/buscar/serial:
     get:
-      summary: Your GET endpoint
+      summary: buscar ticket
       tags:
         - ticket
       responses:
@@ -467,7 +463,7 @@ paths:
           description: Serial del ticket
   /ticket/buscar/ultimos:
     get:
-      summary: Your GET endpoint
+      summary: buscar ultimos tickets
       tags:
         - ticket
       responses:
@@ -528,7 +524,7 @@ paths:
           name: pagina
   /ticket/anular:
     post:
-      summary: ''
+      summary: anular ticket
       operationId: post-ticket-anular
       responses:
         '200':
@@ -538,12 +534,6 @@ paths:
         - ticket
 components:
   schemas:
-    Usuario:
-      title: Usuario
-      type: object
-      properties:
-        id:
-          type: string
     Sorteo:
       title: Sorteo
       type: object
@@ -555,14 +545,18 @@ components:
         cierra:
           type: string
           format: date-time
-          example: '2020-11-11 00:00:00 AM'
+          example: '2020-11-11T00:00:00Z'
         operadora:
           type: string
-    ISODateString:
-      title: ISODateString
-      type: string
+    Error:
+      title: Error
+      type: object
+      properties:
+        error:
+          type: string
+      description: Modelo para respuestas de error
   securitySchemes: {}
 tags:
-  - name: Autenticacion
   - name: sorteos
   - name: ticket
+  - name: Sesion
