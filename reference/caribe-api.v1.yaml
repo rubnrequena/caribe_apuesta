@@ -11,8 +11,6 @@ servers:
 paths:
   /auth:
     post:
-      tags:
-        - dario
       summary: Autenticacion
       operationId: post-auth
       responses:
@@ -125,10 +123,13 @@ paths:
                   usuario: pos1
                   clave: '1234'
         description: Solicitar inicio de sesion
+      tags:
+        - Autenticacion
   /sorteo/disponibles:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - sorteos
       responses:
         '200':
           description: OK
@@ -208,7 +209,8 @@ paths:
   /sorteo/conganador:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - sorteos
       responses:
         '200':
           description: OK
@@ -247,7 +249,8 @@ paths:
   /sorteo/buscar/fecha:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - sorteos
       responses:
         '200':
           description: OK
@@ -343,10 +346,13 @@ paths:
                   - sorteo
                   - monto
         description: ''
+      tags:
+        - ticket
   /ticket/buscar/serial:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - ticket
       responses:
         '200':
           description: OK
@@ -462,7 +468,8 @@ paths:
   /ticket/buscar/ultimos:
     get:
       summary: Your GET endpoint
-      tags: []
+      tags:
+        - ticket
       responses:
         '200':
           description: OK
@@ -527,6 +534,8 @@ paths:
         '200':
           description: OK
       description: Anular ticket
+      tags:
+        - ticket
 components:
   schemas:
     Usuario:
@@ -553,3 +562,7 @@ components:
       title: ISODateString
       type: string
   securitySchemes: {}
+tags:
+  - name: Autenticacion
+  - name: sorteos
+  - name: ticket
