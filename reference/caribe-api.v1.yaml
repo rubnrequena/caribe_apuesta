@@ -125,6 +125,408 @@ paths:
                   usuario: pos1
                   clave: '1234'
         description: Solicitar inicio de sesion
+  /sorteo/disponibles:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  sorteos:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Sorteo'
+                  operadora:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                        sorteos:
+                          type: array
+                          items:
+                            type: string
+                        numeros:
+                          type: string
+                        nombre:
+                          type: string
+                        tipo:
+                          type: string
+                        paga:
+                          type: number
+                  numeros:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                        nombre:
+                          type: string
+                        numeros:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              numero:
+                                type: string
+                              nombre:
+                                type: string
+              examples:
+                example-1:
+                  value:
+                    sorteos:
+                      - _id: string
+                        descripcion: string
+                        cierra: '2020-11-11 00:00:00'
+                        operadora: string
+                    operadora:
+                      - _id: string
+                        sorteos:
+                          - string
+                        numeros: string
+                        nombre: string
+                        tipo: string
+                        paga: 0
+                    numeros:
+                      - _id: string
+                        nombre: string
+                        numeros:
+                          - numero: string
+                            nombre: string
+          headers: {}
+      operationId: get-sorteos-dispnibles
+      description: Obtener listado de sorteos disponibles
+    parameters: []
+  /sorteo/conganador:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                      minLength: 1
+                    descripcion:
+                      type: string
+                      minLength: 1
+                    ganador:
+                      type: string
+                      minLength: 1
+                  required:
+                    - _id
+                    - descripcion
+                    - ganador
+      operationId: get-sorteo-conganador
+      description: Obtener el listado de sorteos premiados del dia
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: operadora
+          description: id de la operadora
+          required: true
+  /sorteo/buscar/fecha:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Sorteo'
+      operationId: get-sorteo-buscar-fecha
+      description: Buscar el listado de sorteos del dia solicitado
+      parameters:
+        - schema:
+            type: string
+            pattern: '\d{4}-\d{2}-\d{2}'
+            minLength: 10
+            maxLength: 10
+            format: date
+            example: '2020-11-11'
+          in: query
+          name: fecha
+          required: true
+          description: fecha en formato ISODate
+        - schema:
+            type: string
+          in: query
+          name: operadora
+          description: id operadora
+          required: true
+  /ticket/venta:
+    post:
+      summary: ''
+      operationId: post-ticket-venta
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  ticket:
+                    type: object
+                    required:
+                      - codigo
+                      - serial
+                      - creado
+                      - monto
+                      - anulado
+                      - _id
+                    properties:
+                      codigo:
+                        type: integer
+                      serial:
+                        type: string
+                        minLength: 1
+                      creado:
+                        type: string
+                        minLength: 1
+                      monto:
+                        type: number
+                      anulado:
+                        type: boolean
+                      _id:
+                        type: string
+                        minLength: 1
+                required:
+                  - ticket
+      description: Vender ticket
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  numero:
+                    type: string
+                    example: '10'
+                    minLength: 1
+                    maxLength: 3
+                  sorteo:
+                    type: string
+                    description: id del sorteo
+                  monto:
+                    type: number
+                    minimum: 1
+                    example: 10000
+                required:
+                  - numero
+                  - sorteo
+                  - monto
+        description: ''
+  /ticket/buscar/serial:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  _id:
+                    type: string
+                    minLength: 1
+                  codigo:
+                    type: number
+                  serial:
+                    type: string
+                    minLength: 1
+                  creado:
+                    type: string
+                    minLength: 1
+                  monto:
+                    type: number
+                  anulado:
+                    type: boolean
+                  moneda:
+                    type: string
+                    minLength: 1
+                  ventas:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                          minLength: 1
+                        premio:
+                          type: boolean
+                        pagado:
+                          type: boolean
+                        numero:
+                          type: string
+                          minLength: 1
+                        sorteo:
+                          type: string
+                          minLength: 1
+                        monto:
+                          type: number
+                      required:
+                        - _id
+                        - premio
+                        - pagado
+                        - numero
+                        - sorteo
+                        - monto
+                  sorteos:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                          minLength: 1
+                        descripcion:
+                          type: string
+                          minLength: 1
+                        operadora:
+                          type: string
+                          minLength: 1
+                      required:
+                        - _id
+                        - descripcion
+                        - operadora
+                  operadoras:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                          minLength: 1
+                        nombre:
+                          type: string
+                          minLength: 1
+                      required:
+                        - _id
+                        - nombre
+                required:
+                  - _id
+                  - codigo
+                  - serial
+                  - creado
+                  - monto
+                  - anulado
+                  - moneda
+                  - ventas
+                  - sorteos
+                  - operadoras
+      operationId: get-ticket-buscar-serial
+      description: buscar ticket por serial
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: serial
+          required: true
+          description: Serial del ticket
+  /ticket/buscar/ultimos:
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+                  properties:
+                    anulado:
+                      type: boolean
+                    codigo:
+                      type: number
+                    creado:
+                      type: string
+                      minLength: 1
+                    moneda:
+                      type: string
+                      minLength: 1
+                    monto:
+                      type: number
+                    serial:
+                      type: string
+                      minLength: 1
+                    _id:
+                      type: string
+                      minLength: 1
+                  required:
+                    - anulado
+                    - codigo
+                    - creado
+                    - moneda
+                    - monto
+                    - serial
+                    - _id
+              examples:
+                ejemplo:
+                  value:
+                    - anulado: true
+                      codigo: 0
+                      creado: string
+                      moneda: string
+                      monto: 0
+                      serial: string
+                      _id: string
+      operationId: get-ticket-buscar-ultimos
+      description: Buscar ultimos tickets vendidos
+      parameters:
+        - schema:
+            type: number
+          in: query
+          name: pagina
+  /ticket/anular:
+    post:
+      summary: ''
+      operationId: post-ticket-anular
+      responses:
+        '200':
+          description: OK
+      description: Anular ticket
 components:
   schemas:
     Usuario:
@@ -137,6 +539,17 @@ components:
       title: Sorteo
       type: object
       properties:
-        id:
+        _id:
           type: string
+        descripcion:
+          type: string
+        cierra:
+          type: string
+          format: date-time
+          example: '2020-11-11 00:00:00 AM'
+        operadora:
+          type: string
+    ISODateString:
+      title: ISODateString
+      type: string
   securitySchemes: {}
