@@ -530,7 +530,8 @@ paths:
   /api/pos/reporte/general/usuario:
     get:
       summary: Reporte Usuario
-      tags: []
+      tags:
+        - Reportes
       responses:
         '200':
           description: OK
@@ -624,3 +625,4 @@ tags:
   - name: sorteos
   - name: ticket
   - name: Sesion
+  - name: Reportes
