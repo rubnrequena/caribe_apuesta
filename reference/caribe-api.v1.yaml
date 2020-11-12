@@ -527,7 +527,7 @@ paths:
       description: Anular ticket
       tags:
         - ticket
-  /api/pos/reporte/general/usuario:
+  /api/pos/reporte/general:
     get:
       summary: Reporte Usuario
       tags:
@@ -597,6 +597,222 @@ paths:
           in: query
           name: moneda
           required: true
+    parameters: []
+  /api/pos/reporte/ventas/:
+    get:
+      summary: Reporte de Ventas por ticket
+      tags:
+        - Reportes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    serial:
+                      type: string
+                    creado:
+                      type: string
+                    monto:
+                      type: number
+                    anulado:
+                      type: boolean
+              examples:
+                Ejemplo:
+                  value:
+                    - _id: 5fac7c504bee0e385880be81
+                      serial: A11121
+                      creado: '2020-11-11 14:00:00'
+                      monto: 10000
+                      anulado: true
+      operationId: get-api-pos-reporte-ventas
+      description: ''
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: fecha
+          required: true
+        - schema:
+            type: string
+            enum:
+              - venta
+              - premiado
+              - pagado
+              - pendiente
+              - anulado
+            default: venta
+          in: query
+          name: estado
+          required: true
+        - schema:
+            type: string
+            default: ves
+          in: query
+          name: moneda
+          required: true
+        - schema:
+            type: string
+            example: Bearer ahstfgsnbqys...
+          in: header
+          name: Authenticacion
+  /ticket/pagar:
+    get:
+      summary: Pagar ticket
+      tags:
+        - ticket
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  mensaje:
+                    type: string
+      operationId: get-ticket-pagar
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: serial
+        - schema:
+            type: string
+          in: query
+          name: codigo
+  /api/pos/reporte/caja:
+    get:
+      summary: Obtener reporte de caja
+      tags:
+        - Reportes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                    venta:
+                      type: number
+                    premio:
+                      type: number
+                    tickets:
+                      type: integer
+                    subtotal:
+                      type: number
+                    comision:
+                      type: number
+                    participacion:
+                      type: number
+                    total:
+                      type: number
+                    operadora:
+                      type: string
+                      description: |
+                        id de la operadora
+                      example: 5fac0cb3f4131413ec042696
+                    fecha:
+                      type: string
+                      example: '2020-11-11 11:00:00'
+                    sesionId:
+                      type: string
+                      example: 5fac0cb3f4131413ec042696
+              examples:
+                Ejemplo:
+                  value:
+                    - _id: 5fac0cb3f4131413ec042696
+                      venta: 0
+                      premio: 0
+                      tickets: 0
+                      subtotal: 0
+                      comision: 0
+                      participacion: 0
+                      total: 0
+                      operadora: 5fac0cb3f4131413ec042696
+                      fecha: '2020-11-11 11:00:00'
+                      sesionId: 5fac0cb3f4131413ec042696
+      operationId: get-api-pos-reporte-caja
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: fecha
+          required: true
+        - schema:
+            type: string
+            default: ves
+            example: ves
+            enum:
+              - ves
+              - usd
+              - eur
+          in: query
+          name: moneda
+  /api/pos/reporte/caja/generar:
+    get:
+      summary: Generar reporte de caja
+      tags:
+        - Reportes
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  mensaje:
+                    type: string
+      operationId: get-api-pos-reporte-caja-generar
+      parameters: []
+  /ticket/devolucion:
+    post:
+      summary: Devolución de ticket
+      operationId: post-ticket-devolucion
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  mensaje:
+                    type: string
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                serial:
+                  type: string
+                sorteo:
+                  type: string
+                numero:
+                  type: string
+                razon:
+                  type: string
+      tags:
+        - ticket
 components:
   schemas:
     Sorteo:
