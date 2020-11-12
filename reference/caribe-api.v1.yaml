@@ -132,72 +132,67 @@ paths:
           content:
             application/json:
               schema:
+                type: array
                 description: ''
-                type: object
-                properties:
-                  sorteos:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Sorteo'
-                  operadora:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        _id:
-                          type: string
-                        sorteos:
-                          type: array
-                          items:
-                            type: string
-                        numeros:
-                          type: string
-                        nombre:
-                          type: string
-                        tipo:
-                          type: string
-                        paga:
-                          type: number
-                  numeros:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        _id:
-                          type: string
-                        nombre:
-                          type: string
-                        numeros:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              numero:
-                                type: string
-                              nombre:
-                                type: string
-              examples:
-                example-1:
-                  value:
-                    sorteos:
-                      - _id: string
-                        descripcion: string
-                        cierra: '2020-11-11T00:00:00Z'
-                        operadora: string
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+                  properties:
+                    _id:
+                      type: string
+                      minLength: 1
                     operadora:
-                      - _id: string
-                        sorteos:
-                          - string
-                        numeros: string
-                        nombre: string
-                        tipo: string
-                        paga: 0
-                    numeros:
-                      - _id: string
-                        nombre: string
-                        numeros:
-                          - numero: string
-                            nombre: string
+                      type: string
+                      minLength: 1
+                    sorteos:
+                      type: array
+                      uniqueItems: true
+                      minItems: 1
+                      items:
+                        type: object
+                        properties:
+                          _id:
+                            type: string
+                            minLength: 1
+                          abierta:
+                            type: boolean
+                          descripcion:
+                            type: string
+                            minLength: 1
+                          cierra:
+                            type: string
+                            minLength: 1
+                        required:
+                          - _id
+                          - abierta
+                          - descripcion
+                          - cierra
+                  required:
+                    - _id
+                    - operadora
+                    - sorteos
+              examples:
+                ejemplo 1:
+                  value:
+                    - _id: 5fac6a25752eb23494950e9e
+                      sorteos:
+                        - _id: 5fac755a49aef72824ceb02d
+                          abierta: true
+                          descripcion: 'GRANJITA 05:00 AM'
+                          cierra: '2020-11-12T04:00:00.000Z'
+                          __v: 0
+                        - _id: 5fac755a49aef72824ceb02e
+                          abierta: true
+                          descripcion: 'GRANJITA 12:00 PM'
+                          cierra: '2020-11-12T11:00:00.000Z'
+                          __v: 0
+                        - _id: 5fac755a49aef72824ceb02f
+                          abierta: true
+                          descripcion: 'GRANJITA 11:59 PM'
+                          cierra: '2020-11-12T22:59:00.000Z'
+                          __v: 0
+                      operadora: GRANJITA
           headers: {}
       operationId: get-sorteos-dispnibles
       description: Obtener listado de sorteos disponibles
@@ -532,6 +527,75 @@ paths:
       description: Anular ticket
       tags:
         - ticket
+  /api/pos/reporte/general/usuario:
+    get:
+      summary: Reporte Usuario
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                description: ''
+                minItems: 1
+                uniqueItems: true
+                items:
+                  type: object
+                  required:
+                    - _id
+                    - venta
+                    - premio
+                    - tickets
+                    - subtotal
+                    - comision
+                    - participacion
+                    - total
+                    - operadora
+                  properties:
+                    _id:
+                      type: string
+                      minLength: 1
+                    venta:
+                      type: number
+                    premio:
+                      type: number
+                    tickets:
+                      type: number
+                    subtotal:
+                      type: number
+                    comision:
+                      type: number
+                    participacion:
+                      type: number
+                    total:
+                      type: number
+                    operadora:
+                      type: string
+                      minLength: 1
+      operationId: get-api-pos-reporte-general-usuario
+      parameters:
+        - schema:
+            type: string
+          in: query
+          name: usuario
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: desde
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: hasta
+          required: true
+        - schema:
+            type: string
+          in: query
+          name: moneda
+          required: true
 components:
   schemas:
     Sorteo:
