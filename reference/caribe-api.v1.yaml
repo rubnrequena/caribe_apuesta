@@ -620,11 +620,6 @@ paths:
           in: query
           name: hasta
           required: true
-        - schema:
-            type: string
-          in: query
-          name: moneda
-          required: true
     parameters: []
   /api/pos/reporte/ventas:
     get:
