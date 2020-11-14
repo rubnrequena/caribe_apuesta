@@ -524,11 +524,39 @@ paths:
       responses:
         '200':
           description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  ok:
+                    type: boolean
+                  mensaje:
+                    type: string
       description: Anular ticket
       tags:
         - ticket
+      parameters:
+        - schema:
+            type: string
+            example: A12356
+          in: query
+          name: serial
+          description: serial del ticket
+          required: true
+        - schema:
+            type: integer
+            example: 1234
+            format: int32
+            minimum: 1000
+            maximum: 9999
+          in: query
+          name: codigo
+          description: codigo de seguridad del ticket
+          required: true
   /api/pos/reporte/general:
     get:
+      description: Reporte de Usuario
       summary: Reporte Usuario
       tags:
         - Reportes
@@ -598,7 +626,7 @@ paths:
           name: moneda
           required: true
     parameters: []
-  /api/pos/reporte/ventas/:
+  /api/pos/reporte/ventas:
     get:
       summary: Reporte de Ventas por ticket
       tags:
@@ -632,7 +660,7 @@ paths:
                       monto: 10000
                       anulado: true
       operationId: get-api-pos-reporte-ventas
-      description: ''
+      description: Reporte de venta
       parameters:
         - schema:
             type: string
@@ -664,6 +692,7 @@ paths:
           name: Authenticacion
   /ticket/pagar:
     get:
+      description: Pagar ticket
       summary: Pagar ticket
       tags:
         - ticket
@@ -691,6 +720,7 @@ paths:
           name: codigo
   /api/pos/reporte/caja:
     get:
+      description: Reporte de Caja
       summary: Obtener reporte de caja
       tags:
         - Reportes
@@ -764,6 +794,7 @@ paths:
           name: moneda
   /api/pos/reporte/caja/generar:
     get:
+      description: Reporte de Caja
       summary: Generar reporte de caja
       tags:
         - Reportes
@@ -783,6 +814,7 @@ paths:
       parameters: []
   /ticket/devolucion:
     post:
+      description: Devolucion de ticket
       summary: Devolución de ticket
       operationId: post-ticket-devolucion
       responses:
