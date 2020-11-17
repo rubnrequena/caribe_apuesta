@@ -9,7 +9,7 @@ info:
 servers:
   - url: 'http://51.83.141.121:3000'
 paths:
-  /auth:
+  /auth/:
     post:
       summary: Autenticacion
       operationId: post-auth
@@ -121,6 +121,7 @@ paths:
         description: Solicitar inicio de sesion
       tags:
         - Sesion
+    parameters: []
   /sorteo/disponibles:
     get:
       summary: sorteos disponibles
@@ -621,7 +622,7 @@ paths:
           name: hasta
           required: true
     parameters: []
-  /api/pos/reporte/ventas:
+  /api/pos/reporte/tickets:
     get:
       summary: Reporte de Ventas por ticket
       tags:
@@ -685,6 +686,7 @@ paths:
             example: Bearer ahstfgsnbqys...
           in: header
           name: Authenticacion
+    parameters: []
   /ticket/pagar:
     get:
       description: Pagar ticket
@@ -840,6 +842,41 @@ paths:
                   type: string
       tags:
         - ticket
+  /auth/cambiarclave:
+    post:
+      summary: ''
+      operationId: post-auth-cambiarclave
+      responses:
+        '200':
+          description: OK
+      description: Cambiar contraseña de la taquilla
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                clave_actual:
+                  type: string
+                clave_nueva:
+                  type: string
+              required:
+                - clave_actual
+      parameters:
+        - schema:
+            type: string
+            example: Bearer af4gs0ds7aas8bba....
+          in: header
+          name: Authentication
+          required: true
+          description: JWToken
+  /auth/recuperar_clave:
+    get:
+      summary: Recuperar contraseña
+      tags: []
+      responses: {}
+      operationId: get-auth-recuperar_clave
+      description: 'Enviar solicitud para recuperar contraseña, mediante el correo'
 components:
   schemas:
     Sorteo:
