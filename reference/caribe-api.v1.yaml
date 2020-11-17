@@ -100,7 +100,7 @@ paths:
                       - 72
                     codigo: 0-63-29
                     grupoPago: 5fac30a3d417f82b2ccbba80
-                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZmFjMzBhM2Q0MTdmODJiMmNjYmJhODciLCJub21icmUiOiJPTkxJTkUgMSIsInJvbCI6Im9ubGluZSIsImplcmFycXVpYSI6WyI1ZmFjMGNiM2Y0MTMxNDEzZWMwNDI2OTYiLCI1ZmFjMzBhM2Q0MTdmODJiMmNjYmJhNzYiXSwibW9uZWRhIjpbeyJfaWQiOiI1ZjNmOWY3MmU4NDMwMDA3NDQ3Y2VkOWIiLCJub21icmUiOiJCb2xpdmFyIiwic2lnbGFzIjoidmVzIiwicHJpbmNpcGFsIjp0cnVlLCJfX3YiOjB9XSwicGVybWlzb3MiOiI1ZmFjMGNiM2Y0MTMxNDEzZWMwNDI2OTciLCJpYXQiOjE2MDUxMjAyMTksImV4cCI6MTYwNTIwNjYxOX0.Q0SWiLnNQJUnXcttu5VAIIoK0kBJiDzUk4ecNE0SJZw
+                    token: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQ...NE0SJZw
       description: punto de acceso para iniciar sesion
       parameters: []
       requestBody:
