@@ -7,7 +7,7 @@ info:
     name: Ruben Requena
   description: API para las taquillas de escritorio del sistema CaribeApuesta
 servers:
-  - url: 'http://51.83.141.121:3000'
+  - url: 'https://api.caribeapuesta.com/'
 paths:
   /auth/:
     post:
@@ -292,7 +292,6 @@ paths:
                       - serial
                       - creado
                       - monto
-                      - anulado
                       - _id
                     properties:
                       codigo:
@@ -305,8 +304,6 @@ paths:
                         minLength: 1
                       monto:
                         type: number
-                      anulado:
-                        type: boolean
                       _id:
                         type: string
                         minLength: 1
@@ -340,7 +337,7 @@ paths:
         description: ''
       tags:
         - ticket
-  /ticket/buscar/serial:
+  /ticket/buscar:
     get:
       summary: buscar ticket
       tags:
@@ -457,6 +454,7 @@ paths:
           name: serial
           required: true
           description: Serial del ticket
+    parameters: []
   /ticket/buscar/ultimos:
     get:
       summary: buscar ultimos tickets
