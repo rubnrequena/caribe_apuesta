@@ -872,33 +872,84 @@ paths:
           name: Authorization
     parameters: []
   /ticket/pagar:
-    get:
-      description: Pagar ticket
-      summary: Pagar ticket
-      tags:
-        - ticket
+    post:
+      summary: ''
+      operationId: post-ticket-pagar
       responses:
         '200':
           description: OK
           content:
             application/json:
               schema:
+                description: ''
                 type: object
                 properties:
-                  ok:
-                    type: boolean
-                  mensaje:
+                  error:
                     type: string
-      operationId: get-ticket-pagar
+                    minLength: 1
+                  result:
+                    type: object
+                    properties:
+                      ticket:
+                        type: string
+                        minLength: 1
+                      numero:
+                        type: string
+                        minLength: 1
+                      pagado:
+                        type: string
+                        minLength: 1
+                      responsable:
+                        type: string
+                        minLength: 1
+                      _id:
+                        type: string
+                        minLength: 1
+                    required:
+                      - ticket
+                      - numero
+                      - pagado
+                      - responsable
+                      - _id
+                required:
+                  - error
+                  - result
+              examples:
+                Ejemplo:
+                  value:
+                    error: OK
+                    result:
+                      ticket: 5fb7b7c34b3ddf1c34dd8661
+                      numero: '34'
+                      pagado: '2020-11-20T16:44:42.210Z'
+                      responsable: 5fb7998b3881183894ea63fc
+                      _id: 5fb7f27a6fc97a40541b3ed9
+      description: Pagar ticket premiado
       parameters:
         - schema:
             type: string
-          in: query
-          name: serial
-        - schema:
-            type: string
-          in: query
-          name: codigo
+          in: header
+          name: Authorization
+          description: token de sesion
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                serial:
+                  type: string
+                codigo:
+                  type: string
+                numero:
+                  type: string
+            examples:
+              Ejemplo:
+                value:
+                  serial: A1234
+                  codigo: '1234'
+                  numero: '33'
   /api/pos/reporte/caja:
     get:
       description: Reporte de Caja
