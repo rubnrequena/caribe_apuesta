@@ -227,6 +227,10 @@ paths:
             type: string
           in: header
           name: Authorization
+        - schema:
+            type: string
+          in: query
+          name: fecha
     parameters: []
   /api/pos/sorteo/conganador:
     get:
