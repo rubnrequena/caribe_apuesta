@@ -132,7 +132,7 @@ paths:
       tags:
         - Sesion
     parameters: []
-  /sorteo/disponibles:
+  /api/pos/sorteo/disponibles:
     get:
       summary: sorteos disponibles
       tags:
@@ -189,6 +189,8 @@ paths:
                         operadora:
                           type: string
                           minLength: 1
+                        tipo:
+                          type: string
                       required:
                         - _id
                         - operadora
@@ -226,7 +228,7 @@ paths:
           in: header
           name: Authorization
     parameters: []
-  /sorteo/conganador:
+  /api/pos/sorteo/conganador:
     get:
       summary: sorteos premiados
       tags:
@@ -1114,6 +1116,120 @@ paths:
       responses: {}
       operationId: get-auth-recuperar_clave
       description: 'Enviar solicitud para recuperar contraseña, mediante el correo'
+  /api/pos/sorteo/buscar:
+    get:
+      summary: Buscar sorteos del dia
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  sorteos:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - _id
+                        - abierta
+                        - ganador
+                        - descripcion
+                        - cierra
+                      properties:
+                        _id:
+                          type: string
+                          minLength: 1
+                        abierta:
+                          type: boolean
+                        ganador:
+                          type: string
+                        descripcion:
+                          type: string
+                          minLength: 1
+                        cierra:
+                          type: string
+                          minLength: 1
+                required:
+                  - error
+                  - sorteos
+              examples:
+                Ejemplo:
+                  value:
+                    error: OK
+                    sorteos:
+                      - _id: 5fbbd00e713bae4bc06778c6
+                        abierta: true
+                        ganador: ''
+                        descripcion: 'TRIPLE ZULIA A 9:00 AM'
+                        cierra: '2020-11-23T08:00:00.000Z'
+                      - _id: 5fbbd00e713bae4bc06778c7
+                        abierta: true
+                        ganador: ''
+                        descripcion: 'TRIPLE ZULIA A 10:00 AM'
+                        cierra: '2020-11-23T09:00:00.000Z'
+                      - _id: 5fbbd00e713bae4bc06778c8
+                        abierta: true
+                        ganador: ''
+                        descripcion: 'TRIPLE ZULIA A 11:00 AM'
+                        cierra: '2020-11-23T10:00:00.000Z'
+                      - _id: 5fbbd00e713bae4bc06778c9
+                        abierta: true
+                        ganador: ''
+                        descripcion: 'TRIPLE ZULIA A 12:00 PM'
+                        cierra: '2020-11-23T11:00:00.000Z'
+                      - _id: 5fbbd00e713bae4bc06778ca
+                        abierta: true
+                        ganador: ''
+                        descripcion: 'TRIPLE ZULIA A 2:00 PM'
+                        cierra: '2020-11-23T13:00:00.000Z'
+                      - _id: 5fbbd00e713bae4bc06778cb
+                        abierta: true
+                        ganador: ''
+                        descripcion: 'TRIPLE ZULIA A 4:00 PM'
+                        cierra: '2020-11-23T15:00:00.000Z'
+                      - _id: 5fbbd00e713bae4bc06778cc
+                        abierta: true
+                        ganador: ''
+                        descripcion: 'TRIPLE ZULIA A 6:00 PM'
+                        cierra: '2020-11-23T17:00:00.000Z'
+                      - _id: 5fbbd00e713bae4bc06778cd
+                        abierta: true
+                        ganador: ''
+                        descripcion: 'TRIPLE ZULIA A 8:00 PM'
+                        cierra: '2020-11-23T19:00:00.000Z'
+                      - _id: 5fbbd00e713bae4bc06778ce
+                        abierta: true
+                        ganador: ''
+                        descripcion: 'TRIPLE ZULIA A 10:00 PM'
+                        cierra: '2020-11-23T21:00:00.000Z'
+                      - _id: 5fbbd00e713bae4bc06778cf
+                        abierta: true
+                        ganador: ''
+                        descripcion: 'TRIPLE ZULIA A 11:50 PM'
+                        cierra: '2020-11-23T22:50:00.000Z'
+      operationId: get-api-pos-sorteo-buscar
+      parameters:
+        - schema:
+            type: string
+          in: header
+          name: Authorization
+        - schema:
+            type: string
+          in: query
+          name: fecha
+        - schema:
+            type: string
+          in: query
+          name: operadora
+          description: Id de la operadora
 components:
   schemas:
     Sorteo:
