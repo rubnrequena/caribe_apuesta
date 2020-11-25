@@ -367,6 +367,11 @@ paths:
             type: string
           in: header
           name: Authorization
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Content-Type
   /ticket/buscar:
     get:
       summary: buscar ticket
