@@ -9,7 +9,7 @@ info:
 servers:
   - url: 'https://api.caribeapuesta.com/'
 paths:
-  api/pos/auth/:
+  api/pos/auth:
     post:
       summary: Autenticacion
       operationId: post-auth
