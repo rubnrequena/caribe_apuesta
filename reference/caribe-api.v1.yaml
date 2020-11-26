@@ -9,7 +9,7 @@ info:
 servers:
   - url: 'https://api.caribeapuesta.com/'
 paths:
-  /auth/:
+  api/pos/auth/:
     post:
       summary: Autenticacion
       operationId: post-auth
@@ -283,7 +283,7 @@ paths:
           in: header
           name: Authorization
           required: true
-  /ticket/venta:
+  api/pos/ticket/venta:
     post:
       summary: vender
       operationId: post-ticket-venta
@@ -384,7 +384,8 @@ paths:
           in: header
           name: Content-Type
           required: true
-  /ticket/buscar:
+    parameters: []
+  api/pos/ticket/buscar:
     get:
       summary: buscar ticket
       tags:
@@ -582,7 +583,7 @@ paths:
           name: Authorization
           required: true
     parameters: []
-  /ticket/anular:
+  api/pos/ticket/anular:
     post:
       summary: Anular ticket
       operationId: post-ticket-anular
@@ -658,6 +659,7 @@ paths:
                 - serial
                 - codigo
         description: ''
+    parameters: []
   /api/pos/reporte/general:
     get:
       description: Reporte de Usuario
@@ -906,7 +908,7 @@ paths:
           name: Authorization
           required: true
     parameters: []
-  /ticket/pagar:
+  api/pos/ticket/pagar:
     post:
       summary: Pagar Ticket
       operationId: post-ticket-pagar
@@ -992,6 +994,7 @@ paths:
                   serial: A1234
                   codigo: '1234'
                   numero: '33'
+    parameters: []
   /api/pos/reporte/caja:
     get:
       description: Reporte de Caja
@@ -1100,7 +1103,7 @@ paths:
           name: Authorization
           required: true
       deprecated: true
-  /ticket/devolucion:
+  api/pos/ticket/devolucion:
     post:
       description: Devolucion de ticket
       summary: Devolución de ticket
@@ -1146,9 +1149,10 @@ paths:
           in: header
           name: Content-Type
           required: true
-  /auth/cambiarclave:
+    parameters: []
+  api/pos/auth/cambiarclave:
     post:
-      summary: ''
+      summary: Cambiar contraseña del POS
       operationId: post-auth-cambiarclave
       responses:
         '200':
@@ -1181,7 +1185,8 @@ paths:
           in: header
           name: Content-Type
           required: true
-  /auth/recuperar_clave:
+    parameters: []
+  api/pos/auth/recuperar_clave:
     get:
       summary: Recuperar contraseña
       tags: []
@@ -1195,6 +1200,7 @@ paths:
           in: header
           name: Authorization
           required: true
+    parameters: []
   /api/pos/sorteo/buscar:
     get:
       summary: Buscar sorteos del dia
