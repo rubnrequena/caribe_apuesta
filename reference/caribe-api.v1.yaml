@@ -1317,6 +1317,133 @@ paths:
           in: query
           name: operadora
           description: Id de la operadora
+  /api/pos/ticket/validar:
+    get:
+      summary: Pre validar ticket
+      tags: []
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  resultado:
+                    type: object
+                    properties:
+                      aceptadas:
+                        type: array
+                        uniqueItems: true
+                        minItems: 1
+                        items:
+                          required:
+                            - sorteo
+                            - numero
+                            - monto
+                            - operadora
+                          properties:
+                            sorteo:
+                              type: string
+                              minLength: 1
+                            numero:
+                              type: string
+                              minLength: 1
+                            monto:
+                              type: number
+                            operadora:
+                              type: string
+                              minLength: 1
+                      rechazadas:
+                        type: array
+                        uniqueItems: true
+                        minItems: 1
+                        items:
+                          required:
+                            - sorteo
+                            - numero
+                            - monto
+                            - operadora
+                          properties:
+                            sorteo:
+                              type: string
+                              minLength: 1
+                            numero:
+                              type: string
+                              minLength: 1
+                            monto:
+                              type: number
+                            operadora:
+                              type: string
+                              minLength: 1
+                    required:
+                      - aceptadas
+                      - rechazadas
+                required:
+                  - error
+                  - resultado
+              examples:
+                Ejemplo:
+                  value:
+                    error: OK
+                    resultado:
+                      aceptadas:
+                        - sorteo: 5fc11d9cc8676e2348e4dba0
+                          numero: '00'
+                          monto: 3700
+                          operadora: 5fb59c152187188aa94612c6
+                        - sorteo: 5fc11d9cc8676e2348e4dba0
+                          numero: '01'
+                          monto: 4700
+                          operadora: 5fb59c152187188aa94612c6
+                        - sorteo: 5fc11d9cc8676e2348e4dba0
+                          numero: '02'
+                          monto: 5900
+                          operadora: 5fb59c152187188aa94612c6
+                        - sorteo: 5fc11d9cc8676e2348e4dba0
+                          numero: '03'
+                          monto: 7600
+                          operadora: 5fb59c152187188aa94612c6
+                      rechazadas:
+                        - sorteo: 5fc11d9cc8676e2348e4dba0
+                          numero: '01'
+                          monto: 4700
+                          operadora: 5fb59c152187188aa94612c6
+      operationId: get-api-pos-ticket-validar
+      parameters:
+        - schema:
+            type: string
+            default: 'Bearer '
+          in: header
+          name: Authorization
+          required: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              description: ''
+              minItems: 1
+              uniqueItems: true
+              items:
+                type: object
+                required:
+                  - sorteo
+                  - numero
+                  - monto
+                properties:
+                  sorteo:
+                    type: string
+                    minLength: 1
+                  numero:
+                    type: string
+                    minLength: 1
+                  monto:
+                    type: number
 components:
   schemas:
     Sorteo:
