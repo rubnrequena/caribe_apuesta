@@ -1335,54 +1335,56 @@ paths:
                     minLength: 1
                   resultado:
                     type: object
-                    properties:
-                      aceptadas:
-                        type: array
-                        uniqueItems: true
-                        minItems: 1
-                        items:
-                          required:
-                            - sorteo
-                            - numero
-                            - monto
-                            - operadora
-                          properties:
-                            sorteo:
-                              type: string
-                              minLength: 1
-                            numero:
-                              type: string
-                              minLength: 1
-                            monto:
-                              type: number
-                            operadora:
-                              type: string
-                              minLength: 1
-                      rechazadas:
-                        type: array
-                        uniqueItems: true
-                        minItems: 1
-                        items:
-                          required:
-                            - sorteo
-                            - numero
-                            - monto
-                            - operadora
-                          properties:
-                            sorteo:
-                              type: string
-                              minLength: 1
-                            numero:
-                              type: string
-                              minLength: 1
-                            monto:
-                              type: number
-                            operadora:
-                              type: string
-                              minLength: 1
                     required:
-                      - aceptadas
-                      - rechazadas
+                      - aceptado
+                      - rechazado
+                    properties:
+                      aceptado:
+                        type: array
+                        uniqueItems: true
+                        minItems: 1
+                        items:
+                          type: object
+                          properties:
+                            sorteo:
+                              type: string
+                              minLength: 1
+                            numero:
+                              type: string
+                              minLength: 1
+                            monto:
+                              type: number
+                            operadora:
+                              type: string
+                              minLength: 1
+                          required:
+                            - sorteo
+                            - numero
+                            - monto
+                            - operadora
+                      rechazado:
+                        type: array
+                        uniqueItems: true
+                        minItems: 1
+                        items:
+                          type: object
+                          properties:
+                            sorteo:
+                              type: string
+                              minLength: 1
+                            numero:
+                              type: string
+                              minLength: 1
+                            monto:
+                              type: number
+                            operadora:
+                              type: string
+                              minLength: 1
+                          required:
+                            - sorteo
+                            - numero
+                            - monto
+                            - operadora
                 required:
                   - error
                   - resultado
@@ -1391,7 +1393,7 @@ paths:
                   value:
                     error: OK
                     resultado:
-                      aceptadas:
+                      aceptado:
                         - sorteo: 5fc11d9cc8676e2348e4dba0
                           numero: '00'
                           monto: 3700
@@ -1408,7 +1410,7 @@ paths:
                           numero: '03'
                           monto: 7600
                           operadora: 5fb59c152187188aa94612c6
-                      rechazadas:
+                      rechazado:
                         - sorteo: 5fc11d9cc8676e2348e4dba0
                           numero: '01'
                           monto: 4700
