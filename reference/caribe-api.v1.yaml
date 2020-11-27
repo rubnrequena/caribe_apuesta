@@ -317,18 +317,86 @@ paths:
                       - codigo
                       - creado
                       - monto
+                  aceptado:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - sorteo
+                        - numero
+                        - monto
+                        - operadora
+                      properties:
+                        sorteo:
+                          type: string
+                          minLength: 1
+                        numero:
+                          type: string
+                          minLength: 1
+                        monto:
+                          type: number
+                        operadora:
+                          type: string
+                          minLength: 1
+                  rechazado:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      required:
+                        - sorteo
+                        - numero
+                        - monto
+                        - operadora
+                      properties:
+                        sorteo:
+                          type: string
+                          minLength: 1
+                        numero:
+                          type: string
+                          minLength: 1
+                        monto:
+                          type: number
+                        operadora:
+                          type: string
+                          minLength: 1
                 required:
                   - error
                   - ticket
+                  - aceptado
+                  - rechazado
               examples:
                 Ejemplo:
                   value:
                     error: OK
                     ticket:
-                      serial: A111817
-                      codigo: 6874
-                      creado: '2020-11-18T19:28:43.559Z'
-                      monto: 24900
+                      serial: A11277
+                      codigo: 2586
+                      creado: '2020-11-27T22:49:23.605Z'
+                      monto: 22700
+                    aceptado:
+                      - sorteo: 5fc11d9cc8676e2348e4dba0
+                        numero: '00'
+                        monto: 9000
+                        operadora: 5fb59c152187188aa94612c6
+                      - sorteo: 5fc11d9cc8676e2348e4dba0
+                        numero: '01'
+                        monto: 0
+                        operadora: 5fb59c152187188aa94612c6
+                      - sorteo: 5fc11d9cc8676e2348e4dba0
+                        numero: '02'
+                        monto: 10000
+                        operadora: 5fb59c152187188aa94612c6
+                      - sorteo: 5fc11d9cc8676e2348e4dba0
+                        numero: '03'
+                        monto: 3700
+                        operadora: 5fb59c152187188aa94612c6
+                    rechazado:
+                      - sorteo: 5fc11d9cc8676e2348e4dba0
+                        numero: '01'
+                        monto: 0
+                        operadora: 5fb59c152187188aa94612c6
       description: Vender ticket
       requestBody:
         content:
