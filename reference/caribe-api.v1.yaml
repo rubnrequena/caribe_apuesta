@@ -470,9 +470,6 @@ paths:
                   error:
                     type: string
                     minLength: 1
-                  _id:
-                    type: string
-                    minLength: 1
                   serial:
                     type: string
                     minLength: 1
@@ -495,19 +492,14 @@ paths:
                     minItems: 1
                     items:
                       required:
-                        - _id
                         - premio
                         - pagado
                         - sorteo
                         - numero
                         - monto
-                        - moneda
                       properties:
-                        _id:
-                          type: string
-                          minLength: 1
                         premio:
-                          type: boolean
+                          type: number
                         pagado:
                           type: boolean
                         sorteo:
@@ -518,9 +510,6 @@ paths:
                           minLength: 1
                         monto:
                           type: number
-                        moneda:
-                          type: string
-                          minLength: 1
                   sorteos:
                     type: array
                     uniqueItems: true
@@ -528,11 +517,14 @@ paths:
                     items:
                       required:
                         - _id
+                        - ganador
                         - descripcion
                         - operadora
-                        - ganador
                       properties:
                         _id:
+                          type: string
+                          minLength: 1
+                        ganador:
                           type: string
                           minLength: 1
                         descripcion:
@@ -541,40 +533,8 @@ paths:
                         operadora:
                           type: string
                           minLength: 1
-                        ganador:
-                          type: string
-                          minLength: 1
-                  operadoras:
-                    type: array
-                    uniqueItems: true
-                    minItems: 1
-                    items:
-                      required:
-                        - _id
-                        - comision
-                        - participacion
-                        - nombre
-                        - paga
-                        - numeros
-                      properties:
-                        _id:
-                          type: string
-                          minLength: 1
-                        comision:
-                          type: number
-                        participacion:
-                          type: number
-                        nombre:
-                          type: string
-                          minLength: 1
-                        paga:
-                          type: number
-                        numeros:
-                          type: string
-                          minLength: 1
                 required:
                   - error
-                  - _id
                   - serial
                   - usuario
                   - creado
@@ -583,59 +543,27 @@ paths:
                   - moneda
                   - ventas
                   - sorteos
-                  - operadoras
               examples:
                 Ejemplo:
                   value:
                     error: OK
-                    _id: 5fb578bb5b731f2b70fd0ee0
-                    serial: A111821
-                    usuario: 5fac7cf0f2740e304453847c
-                    creado: '2020-11-18T19:40:43.512Z'
-                    monto: 16300
+                    serial: A12025
+                    usuario: 5fc2a2d6f80e762b49f7d635
+                    creado: '2020-12-02T09:54:21.028Z'
+                    monto: 4000
                     anulado: false
                     moneda: ves
                     ventas:
-                      - _id: 5fb578bb5b731f2b70fd0ee1
-                        premio: false
-                        pagado: false
-                        sorteo: 5fb4fabcaa940930b412c742
-                        numero: '00'
-                        monto: 7600
-                        moneda: ves
-                      - _id: 5fb578bb5b731f2b70fd0ee2
-                        premio: false
-                        pagado: false
-                        sorteo: 5fb4fabcaa940930b412c742
-                        numero: '01'
-                        monto: 2700
-                        moneda: ves
-                      - _id: 5fb578bb5b731f2b70fd0ee3
-                        premio: false
-                        pagado: false
-                        sorteo: 5fb4fabcaa940930b412c742
-                        numero: '02'
-                        monto: 3800
-                        moneda: ves
-                      - _id: 5fb578bb5b731f2b70fd0ee4
-                        premio: false
-                        pagado: false
-                        sorteo: 5fb4fabcaa940930b412c742
-                        numero: '03'
-                        monto: 2200
-                        moneda: ves
+                      - premio: 2840000
+                        pagado: true
+                        sorteo: 5fc696b20dce3f30815c579f
+                        numero: '10'
+                        monto: 4000
                     sorteos:
-                      - _id: 5fb4fabcaa940930b412c742
-                        descripcion: 'GRANJITA 11:59 PM'
-                        operadora: 5fac6a25752eb23494950e9e
-                        ganador: '3'
-                    operadoras:
-                      - _id: 5fac6a25752eb23494950e9e
-                        comision: 0
-                        participacion: 0
-                        nombre: GRANJITA
-                        paga: 30
-                        numeros: 5f44d89465c6e551dcb5213c
+                      - _id: 5fc696b20dce3f30815c579f
+                        ganador: '10'
+                        descripcion: 'TRPLE ZULIA A 12:00 PM'
+                        operadora: 5fb59c152187188aa94612c6
       operationId: get-ticket-buscar-serial
       description: buscar ticket por serial
       parameters:
