@@ -847,17 +847,16 @@ paths:
                     items:
                       required:
                         - _id
-                        - codigo
                         - serial
                         - creado
                         - monto
                         - anulado
+                        - pagado
+                        - premio
                       properties:
                         _id:
                           type: string
                           minLength: 1
-                        codigo:
-                          type: number
                         serial:
                           type: string
                           minLength: 1
@@ -868,6 +867,10 @@ paths:
                           type: number
                         anulado:
                           type: boolean
+                        pagado:
+                          type: number
+                        premio:
+                          type: number
                 required:
                   - error
                   - tickets
