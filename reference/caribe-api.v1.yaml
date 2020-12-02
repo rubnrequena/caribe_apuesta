@@ -879,72 +879,41 @@ paths:
                   value:
                     error: OK
                     tickets:
-                      - _id: 5fb54811ce1d57092cbdc123
-                        codigo: 9484
-                        serial: A11181
-                        creado: '2020-11-18T16:13:05.099Z'
-                        monto: 189400
-                        anulado: true
-                      - _id: 5fb5583b34c8cb32207200fd
-                        codigo: 5836
-                        serial: A11182
-                        creado: '2020-11-18T17:22:03.242Z'
-                        monto: 185700
-                        anulado: true
-                      - _id: 5fb55cb51f66b12b78205ab7
-                        codigo: 3125
-                        serial: A11183
-                        creado: '2020-11-18T17:41:09.939Z'
-                        monto: 206000
-                        anulado: true
-                      - _id: 5fb567bb67372e2beccdabf3
-                        codigo: 5236
-                        serial: A11184
-                        creado: '2020-11-18T18:28:11.074Z'
-                        monto: 165600
+                      - _id: 5fc6eeca9c5adc3049e2ea28
+                        serial: A12011
+                        creado: '2020-12-02T01:32:58.355Z'
+                        monto: 400
                         anulado: false
-                      - _id: 5fb568089dfe2635185d9aa6
-                        codigo: 3086
-                        serial: A11185
-                        creado: '2020-11-18T18:29:28.846Z'
-                        monto: 201800
-                        anulado: true
-                      - _id: 5fb56a2601c4603c3cea0298
-                        codigo: 7830
-                        serial: A11186
-                        creado: '2020-11-18T18:38:30.072Z'
-                        monto: 172100
-                        anulado: true
-                      - _id: 5fb5700caf7a762e68d35663
-                        codigo: 7379
-                        serial: A11187
-                        creado: '2020-11-18T19:03:40.376Z'
-                        monto: 210300
-                        anulado: true
-                      - _id: 5fb570b0d4416634f8f50d5f
-                        codigo: 1625
-                        serial: A11188
-                        creado: '2020-11-18T19:06:24.454Z'
-                        monto: 200800
-                        anulado: true
-                      - _id: 5fb571311f82ee3d64a01be0
-                        codigo: 6814
-                        serial: A11189
-                        creado: '2020-11-18T19:08:33.639Z'
-                        monto: 223200
-                        anulado: true
-                      - _id: 5fb57209da3b8c2d385e472b
-                        codigo: 3152
-                        serial: A111810
-                        creado: '2020-11-18T19:12:09.385Z'
-                        monto: 219800
-                        anulado: true
-                      - _id: 5fb572e149c9b6280c255109
-                        codigo: 7596
-                        serial: A111811
-                        creado: '2020-11-18T19:15:45.684Z'
-                        monto: 194900
+                        pagado: 0
+                        premio: 0
+                      - _id: 5fc6efd7a24ba2304af03e90
+                        serial: A12012
+                        creado: '2020-12-02T01:37:27.850Z'
+                        monto: 600
                         anulado: false
+                        pagado: 0
+                        premio: 0
+                      - _id: 5fc7632b441a691175566861
+                        serial: A12024
+                        creado: '2020-12-02T09:49:31.567Z'
+                        monto: 4000
+                        anulado: true
+                        pagado: 0
+                        premio: 0
+                      - _id: 5fc7644d97603d11ae2a26a8
+                        serial: A12025
+                        creado: '2020-12-02T09:54:21.028Z'
+                        monto: 4000
+                        anulado: false
+                        pagado: 2840000
+                        premio: 2840000
+                      - _id: 5fc766f53d05f318ce1b3783
+                        serial: A12026
+                        creado: '2020-12-02T10:05:41.330Z'
+                        monto: 4000
+                        anulado: true
+                        pagado: 0
+                        premio: 2840000
       operationId: get-api-pos-reporte-ventas
       description: Reporte de venta
       parameters:
