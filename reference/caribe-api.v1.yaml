@@ -975,51 +975,129 @@ paths:
           content:
             application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    _id:
-                      type: string
-                    venta:
-                      type: number
-                    premio:
-                      type: number
-                    tickets:
-                      type: integer
-                    subtotal:
-                      type: number
-                    comision:
-                      type: number
-                    participacion:
-                      type: number
-                    total:
-                      type: number
-                    operadora:
-                      type: string
-                      description: |
-                        id de la operadora
-                      example: 5fac0cb3f4131413ec042696
-                    fecha:
-                      type: string
-                      example: '2020-11-11 11:00:00'
-                    sesionId:
-                      type: string
-                      example: 5fac0cb3f4131413ec042696
+                description: ''
+                type: object
+                properties:
+                  error:
+                    type: string
+                    minLength: 1
+                  reportes:
+                    type: array
+                    uniqueItems: true
+                    minItems: 1
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: string
+                          minLength: 1
+                        usuario:
+                          type: string
+                          minLength: 1
+                        fecha:
+                          type: string
+                          minLength: 1
+                        reporte:
+                          type: array
+                          uniqueItems: true
+                          minItems: 1
+                          items:
+                            type: object
+                            properties:
+                              _id:
+                                type: string
+                                minLength: 1
+                              operadora:
+                                type: string
+                                minLength: 1
+                              monto:
+                                type: number
+                              premio:
+                                type: number
+                              pagado:
+                                type: number
+                              tickets:
+                                type: number
+                              comision:
+                                type: number
+                              sorteo:
+                                type: string
+                                minLength: 1
+                              sorteoNombre:
+                                type: string
+                                minLength: 1
+                            required:
+                              - _id
+                              - operadora
+                              - monto
+                              - premio
+                              - pagado
+                              - tickets
+                              - comision
+                              - sorteo
+                              - sorteoNombre
+                      required:
+                        - _id
+                        - usuario
+                        - fecha
+                required:
+                  - error
+                  - reportes
               examples:
                 Ejemplo:
                   value:
-                    - _id: 5fac0cb3f4131413ec042696
-                      venta: 0
-                      premio: 0
-                      tickets: 0
-                      subtotal: 0
-                      comision: 0
-                      participacion: 0
-                      total: 0
-                      operadora: 5fac0cb3f4131413ec042696
-                      fecha: '2020-11-11 11:00:00'
-                      sesionId: 5fac0cb3f4131413ec042696
+                    error: OK
+                    reportes:
+                      - _id: 5fc97893aa679d0ff85b4b61
+                        usuario: 5fc22acecd17bc3b282b6013
+                        fecha: '2020-12-03'
+                        reporte:
+                          - _id: 5fc97893aa679d0ff85b4b62
+                            operadora: 5fb59c152187188aa94612c6
+                            monto: 379000
+                            premio: 0
+                            pagado: 0
+                            tickets: 1
+                            comision: 60640
+                            sorteo: 5fc8275c1007e71c84d657e4
+                            sorteoNombre: 'TRIPLE ZULIA A 11:50 PM'
+                          - _id: 5fc97893aa679d0ff85b4b63
+                            operadora: 5fb9d6c68176871ca040cce5
+                            monto: 1000000
+                            premio: 0
+                            pagado: 0
+                            tickets: 6
+                            comision: 160000
+                            sorteo: 5fc829a74353a64314ca2559
+                            sorteoNombre: 'GRANJITA ONLINE 07:00 PM'
+                          - _id: 5fc97893aa679d0ff85b4b64
+                            operadora: 5fb9d6c68176871ca040cce5
+                            monto: 144000
+                            premio: 0
+                            pagado: 0
+                            tickets: 2
+                            comision: 23040
+                            sorteo: 5fc829a74353a64314ca255a
+                            sorteoNombre: 'GRANJITA ONLINE 11:00 PM'
+                          - _id: 5fc97893aa679d0ff85b4b65
+                            operadora: 5fb9d6c68176871ca040cce5
+                            monto: 1235000
+                            premio: 0
+                            pagado: 0
+                            tickets: 5
+                            comision: 197600
+                            sorteo: 5fc829a74353a64314ca255b
+                            sorteoNombre: 'GRANJITA ONLINE 03:00 AM'
+                          - _id: 5fc97893aa679d0ff85b4b66
+                            operadora: 5fbee7cf0966ba248cbd01f0
+                            monto: 589000
+                            premio: 0
+                            pagado: 0
+                            tickets: 2
+                            comision: 94240
+                            sorteo: 5fc829ee4353a64314ca2593
+                            sorteoNombre: 'LA RUCA 07:15 PM'
+                        __v: 0
       operationId: get-api-pos-reporte-caja
       parameters:
         - schema:
