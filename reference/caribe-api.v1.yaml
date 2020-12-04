@@ -197,6 +197,8 @@ paths:
                           minLength: 1
                         tipo:
                           type: string
+                        numeros:
+                          type: string
                       required:
                         - _id
                         - operadora
@@ -226,6 +228,8 @@ paths:
                             cierra: '2020-11-18T22:59:00.000Z'
                             ganador: '2'
                         operadora: GRANJITA
+                        tipo: animal
+                        numeros: 5f44d89465c6e551dcb5213c
       operationId: get-sorteos-dispnibles
       description: Obtener listado de sorteos disponibles
       parameters:
