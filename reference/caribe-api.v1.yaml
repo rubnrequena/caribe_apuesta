@@ -1142,6 +1142,11 @@ paths:
                     minLength: 1
                   reporte:
                     type: object
+                    required:
+                      - _id
+                      - usuario
+                      - fecha
+                      - reporte
                     properties:
                       _id:
                         type: string
@@ -1157,16 +1162,7 @@ paths:
                         uniqueItems: true
                         minItems: 1
                         items:
-                          required:
-                            - _id
-                            - operadora
-                            - monto
-                            - premio
-                            - pagado
-                            - tickets
-                            - comision
-                            - sorteo
-                            - sorteoNombre
+                          type: object
                           properties:
                             _id:
                               type: string
@@ -1190,14 +1186,16 @@ paths:
                             sorteoNombre:
                               type: string
                               minLength: 1
-                      __v:
-                        type: number
-                    required:
-                      - _id
-                      - usuario
-                      - fecha
-                      - reporte
-                      - __v
+                          required:
+                            - _id
+                            - operadora
+                            - monto
+                            - premio
+                            - pagado
+                            - tickets
+                            - comision
+                            - sorteo
+                            - sorteoNombre
                 required:
                   - error
                   - reporte
