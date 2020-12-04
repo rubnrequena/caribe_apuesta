@@ -1281,12 +1281,12 @@ paths:
             schema:
               type: object
               properties:
-                clave_actual:
+                actual:
                   type: string
-                clave_nueva:
+                nueva:
                   type: string
               required:
-                - clave_actual
+                - actual
       parameters:
         - schema:
             type: string
